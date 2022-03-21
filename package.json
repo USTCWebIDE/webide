@@ -143,5 +143,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "react-split-pane": "^0.1.92"
   }
 }

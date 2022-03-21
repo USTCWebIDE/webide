@@ -13,12 +13,18 @@ class Editor extends Component {
 		this.state = {
 			code: defaultCode,
 		}
+		this.monacoRef = React.createRef()
+		this.editorLayout = this.editorLayout.bind(this)
 		this.onChangeHandle = this.onChangeHandle.bind(this)
 	}
 	onChangeHandle(value, e) {
 		this.setState({
 			code: value,
 		})
+	}
+	editorLayout(){
+		console.log(this.monacoRef.current)
+		this.monacoRef.current.editor.focus()
 	}
 	editorDidMountHandle(editor, monaco) {
 		console.log("editorDidMount", editor)
@@ -31,21 +37,17 @@ class Editor extends Component {
 			renderSideBySide: false,
 		}
 		return (
-			<div id="wrapper">
-            <div id="left"></div>
-					<div id="editor">
+			<div id="editor">
 						<MonacoEditor
+							ref={this.monacoRef}
 							language="javascript"
 							value={code}
 							options={options}
 							onChange={this.onChangeHandle}
 							editorDidMount={this.editorDidMountHandle}
+                     theme='vs-dark'
 						/>
 					</div>
-					{/* <div className="view" contentEditable={true}>
-						{this.state.code}
-					</div> */}
-			</div>
 		)
 	}
 }
