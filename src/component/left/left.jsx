@@ -3,7 +3,7 @@ import "./index.css"
 
 function Left(){
 	return (
-		<div id='left'></div>
+		<div id='left'>tools</div>
 	)
 }
 

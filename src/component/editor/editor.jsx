@@ -24,7 +24,7 @@ class Editor extends Component {
 	}
 	editorLayout(){
 		console.log(this.monacoRef.current)
-		this.monacoRef.current.editor.focus()
+		this.monacoRef.current.editor.layout()
 	}
 	editorDidMountHandle(editor, monaco) {
 		console.log("editorDidMount", editor)

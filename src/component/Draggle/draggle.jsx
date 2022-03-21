@@ -9,7 +9,15 @@ function Draggle({
 	containerWidth = 0, // 容器宽度
 	containerHeight = 0, // 容器高度
 	initLeftWidth = 0, // 初始左侧容器宽度
-	handler = {}, // 拖拽器
+	handler = (
+		<div
+			style={{
+				width: 4,
+				height: "100%",
+				background: "rgb(77, 81, 100)",
+			}}
+		/>
+	), // 拖拽器
 	onWidthChange = width => width, // 左侧容器高度变化
 	onDraggle,
 }) {
@@ -44,15 +52,15 @@ function Draggle({
 	)
 
 	return (
-		<div ref={ref} class='root' style={{ width: containerWidth, height: containerHeight }}>
-			<div class='left' style={{ width: position.x }}>
+		<div ref={ref} class="root" style={{ width: containerWidth, height: containerHeight }}>
+			<div class="left" style={{ width: position.x }}>
 				{children[0]}
 
-				<div class='handler' {...props}>
+				<div class="handler" {...props}>
 					{_handler}
 				</div>
 			</div>
-			<div class='right' style={{ width: containerWidth - position.x }}>
+			<div class="right" style={{ width: containerWidth - position.x }}>
 				{children[1]}
 			</div>
 		</div>

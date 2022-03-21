@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Draggle from "../component/Draggle/draggle"
 import Editor from "../component/editor/editor"
 import Left from "../component/left/left"
@@ -8,6 +8,12 @@ import './index.css'
 function Main() {
    const editorRef = useRef(null)
    const [Screen, setScreen] = useState(WindowSizeCut(getWindowSize()))
+   useEffect(()=>{
+      window.onresize = ()=>{
+         setScreen(WindowSizeCut(getWindowSize()))
+         editorRef.current.editorLayout()
+      }
+   },[])
    const onDraggle = ()=>{
       // console.log('1');
       // console.log(editorRef.current)
@@ -23,29 +29,22 @@ function Main() {
 			min={200}
 			max={800}
 			initLeftWidth={300}
-         onDraggle={onDraggle}
-			handler={
-				<div
-					style={{
-						width: 4,
-						height: "100%",
-						background: "rgb(77, 81, 100)",
-					}}
-				/>
-			}>
-			<div
-				style={{
-					backgroundColor: `#333333`,
-					color: `#fff`,
-					height: "100%",
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
-				}}>
-				files
-			</div>
+         onDraggle={onDraggle}>
+			<div class="files">
+            files<br></br>devs
+         </div>
          <Editor ref={editorRef}/>
-			{/* <div
+		</Draggle>
+      <div class="files2 files">preview</div>
+      </div>
+	)
+}
+export default Main
+function WindowSizeCut(arr){
+   return [arr[0] - 40 - 300, arr[1]-40]
+}
+
+{/* <div
 				style={{
 					backgroundColor: `rgb(116, 140, 253)`,
 					color: `#fff`,
@@ -56,11 +55,3 @@ function Main() {
 				}}>
 				
 			</div> */}
-		</Draggle>
-      </div>
-	)
-}
-export default Main
-function WindowSizeCut(arr){
-   return [arr[0] - 40, arr[1]-40]
-}
