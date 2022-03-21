@@ -2,10 +2,52 @@ import React, { Component } from "react"
 import MonacoEditor from "react-monaco-editor"
 import "./editor.css"
 
-const defaultCode = `export default {
-  name: 'name',
-  code: 'code'
-}`
+const defaultCode = `function wait(time){
+   return new Promise((resolve)=>{
+      setTimeout(()=>{
+         resolve(time)
+      }, time)
+   })
+}
+class mPromise{
+   constructor(executor){
+      this.status = 0;
+      this.callback = [];
+      this.value = undefined;
+      executor(this._resolve.bind(this));
+   }
+   _resolve(value){
+      this.value = value;
+      this.callback.forEach(({onFulfilled, resolve})=>{
+         var res = typeof onFulfilled === 'function' && onFulfilled(value);
+         if(res instanceof mPromise){
+            res.then(resolve)
+         }
+      })
+   }
+   then(onFulfilled){
+      return new Promise((resolve)=>{
+         this.callback.push({onFulfilled, resolve})
+      })
+   }
+}
+wait(100)
+.then((t)=>{
+   console.log(t);
+   return wait(1000);
+})
+.then((t)=>{
+   console.log(t);
+   return wait(1000);
+})
+.then((t)=>{
+   console.log(t);
+   return wait(1000);
+})
+.then((t)=>{
+   console.log(t);
+   return wait(1000);
+})`
 
 class Editor extends Component {
 	constructor(props) {
