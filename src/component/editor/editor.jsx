@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import MonacoEditor from "react-monaco-editor"
 import "./editor.css"
-
 const defaultCode = `function wait(time){
    return new Promise((resolve)=>{
       setTimeout(()=>{

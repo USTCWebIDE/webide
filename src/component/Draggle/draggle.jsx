@@ -12,7 +12,7 @@ function Draggle({
 	handler = (
 		<div
 			style={{
-				width: 4,
+				width: 10,
 				height: "100%",
 				background: "rgb(77, 81, 100)",
 			}}
@@ -52,15 +52,15 @@ function Draggle({
 	)
 
 	return (
-		<div ref={ref} class="root" style={{ width: containerWidth, height: containerHeight }}>
-			<div class="left" style={{ width: position.x }}>
+		<div ref={ref} className="root" style={{ width: containerWidth, height: containerHeight }}>
+			<div className="left" style={{ width: position.x }}>
 				{children[0]}
 
-				<div class="handler" {...props}>
+				<div className="handler" {...props}>
 					{_handler}
 				</div>
 			</div>
-			<div class="right" style={{ width: containerWidth - position.x }}>
+			<div className="right" style={{ width: containerWidth - position.x }}>
 				{children[1]}
 			</div>
 		</div>

@@ -4,7 +4,7 @@ import "./index.css"
 function Nav(){
 	return(
 		<div id="nav">
-			nav
+			工具栏
 		</div>
 	)
 }
